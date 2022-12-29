@@ -1,0 +1,476 @@
+diff -urpN klippy-stock/console.py klippy/console.py
+--- klippy-stock/console.py	2022-12-28 23:06:59.896994579 -0500
++++ klippy/console.py	2022-12-28 23:07:11.082946757 -0500
+@@ -5,7 +5,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, optparse, os, re, logging
+-import util, reactor, serialhdl, pins, msgproto, clocksync
++from . import util, reactor, serialhdl, pins, msgproto, clocksync
+ 
+ help_txt = """
+   This is a debugging console for the Klipper micro-controller.
+diff -urpN klippy-stock/extras/bed_tilt.py klippy/extras/bed_tilt.py
+--- klippy-stock/extras/bed_tilt.py	2022-12-28 23:06:59.884994630 -0500
++++ klippy/extras/bed_tilt.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import mathutil
++from .. import mathutil
+ from . import probe
+ 
+ class BedTilt:
+diff -urpN klippy-stock/extras/bus.py klippy/extras/bus.py
+--- klippy-stock/extras/bus.py	2022-12-28 23:06:59.884994630 -0500
++++ klippy/extras/bus.py	2022-12-28 23:07:11.079946769 -0500
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2018,2019  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import mcu
++from .. import mcu
+ 
+ def resolve_bus_name(mcu, param, bus):
+     # Find enumerations for the given bus
+diff -urpN klippy-stock/extras/delta_calibrate.py klippy/extras/delta_calibrate.py
+--- klippy-stock/extras/delta_calibrate.py	2022-12-28 23:06:59.885994626 -0500
++++ klippy/extras/delta_calibrate.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, collections
+-import mathutil
++from .. import mathutil
+ from . import probe
+ 
+ # A "stable position" is a 3-tuple containing the number of steps
+diff -urpN klippy-stock/extras/ds18b20.py klippy/extras/ds18b20.py
+--- klippy-stock/extras/ds18b20.py	2022-12-28 23:06:59.885994626 -0500
++++ klippy/extras/ds18b20.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import mcu
++from .. import mcu
+ 
+ DS18_REPORT_TIME = 3.0
+ # Temperature can be sampled at any time but conversion time is ~750ms, so
+diff -urpN klippy-stock/extras/endstop_phase.py klippy/extras/endstop_phase.py
+--- klippy-stock/extras/endstop_phase.py	2022-12-28 23:06:59.885994626 -0500
++++ klippy/extras/endstop_phase.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import stepper
++from .. import stepper
+ 
+ TRINAMIC_DRIVERS = ["tmc2130", "tmc2208", "tmc2209", "tmc2660", "tmc5160"]
+ 
+diff -urpN klippy-stock/extras/extruder_stepper.py klippy/extras/extruder_stepper.py
+--- klippy-stock/extras/extruder_stepper.py	2022-12-28 23:06:59.885994626 -0500
++++ klippy/extras/extruder_stepper.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-from kinematics import extruder
++from ..kinematics import extruder
+ 
+ class PrinterExtruderStepper:
+     def __init__(self, config):
+diff -urpN klippy-stock/extras/force_move.py klippy/extras/force_move.py
+--- klippy-stock/extras/force_move.py	2022-12-28 23:06:59.886994622 -0500
++++ klippy/extras/force_move.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import chelper
++from .. import chelper
+ 
+ BUZZ_DISTANCE = 1.
+ BUZZ_VELOCITY = BUZZ_DISTANCE / .250
+diff -urpN klippy-stock/extras/input_shaper.py klippy/extras/input_shaper.py
+--- klippy-stock/extras/input_shaper.py	2022-12-28 23:06:59.887994617 -0500
++++ klippy/extras/input_shaper.py	2022-12-28 23:07:11.079946769 -0500
+@@ -5,7 +5,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import collections
+-import chelper
++from .. import chelper
+ from . import shaper_defs
+ 
+ class InputShaperParams:
+diff -urpN klippy-stock/extras/manual_stepper.py klippy/extras/manual_stepper.py
+--- klippy-stock/extras/manual_stepper.py	2022-12-28 23:06:59.888994613 -0500
++++ klippy/extras/manual_stepper.py	2022-12-28 23:07:11.080946765 -0500
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2019-2021  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import stepper, chelper
++from .. import stepper, chelper
+ from . import force_move
+ 
+ class ManualStepper:
+diff -urpN klippy-stock/extras/motion_report.py klippy/extras/motion_report.py
+--- klippy-stock/extras/motion_report.py	2022-12-28 23:06:59.888994613 -0500
++++ klippy/extras/motion_report.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import chelper
++from .. import chelper
+ 
+ API_UPDATE_INTERVAL = 0.500
+ 
+diff -urpN klippy-stock/extras/probe.py klippy/extras/probe.py
+--- klippy-stock/extras/probe.py	2022-12-28 23:06:59.890994605 -0500
++++ klippy/extras/probe.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import pins
++from .. import pins
+ from . import manual_probe
+ 
+ HINT_TIMEOUT = """
+diff -urpN klippy-stock/extras/replicape.py klippy/extras/replicape.py
+--- klippy-stock/extras/replicape.py	2022-12-28 23:06:59.890994605 -0500
++++ klippy/extras/replicape.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging, os
+-import pins, mcu
++from .. import pins, mcu
+ from . import bus
+ 
+ REPLICAPE_MAX_CURRENT = 3.84
+diff -urpN klippy-stock/extras/shaper_calibrate.py klippy/extras/shaper_calibrate.py
+--- klippy-stock/extras/shaper_calibrate.py	2022-12-28 23:06:59.891994600 -0500
++++ klippy/extras/shaper_calibrate.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import collections, importlib, logging, math, multiprocessing, traceback
+-shaper_defs = importlib.import_module('.shaper_defs', 'extras')
++from ..extras import shaper_defs
+ 
+ MIN_FREQ = 5.
+ MAX_FREQ = 200.
+diff -urpN klippy-stock/extras/sx1509.py klippy/extras/sx1509.py
+--- klippy-stock/extras/sx1509.py	2022-12-28 23:06:59.892994596 -0500
++++ klippy/extras/sx1509.py	2022-12-28 23:07:11.080946765 -0500
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2018  Florian Heilmann <Florian.Heilmann@gmx.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import pins
++from .. import pins
+ from . import bus
+ 
+ # Word registers
+diff -urpN klippy-stock/extras/temperature_mcu.py klippy/extras/temperature_mcu.py
+--- klippy-stock/extras/temperature_mcu.py	2022-12-28 23:06:59.892994596 -0500
++++ klippy/extras/temperature_mcu.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import mcu
++from .. import mcu
+ 
+ SAMPLE_TIME = 0.001
+ SAMPLE_COUNT = 8
+diff -urpN klippy-stock/extras/tmc.py klippy/extras/tmc.py
+--- klippy-stock/extras/tmc.py	2022-12-28 23:06:59.893994592 -0500
++++ klippy/extras/tmc.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging, collections
+-import stepper
++from .. import stepper
+ 
+ 
+ ######################################################################
+diff -urpN klippy-stock/extras/z_tilt.py klippy/extras/z_tilt.py
+--- klippy-stock/extras/z_tilt.py	2022-12-28 23:06:59.894994587 -0500
++++ klippy/extras/z_tilt.py	2022-12-28 23:07:11.079946769 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import mathutil
++from .. import mathutil
+ from . import probe
+ 
+ class ZAdjustHelper:
+diff -urpN klippy-stock/kinematics/cartesian.py klippy/kinematics/cartesian.py
+--- klippy-stock/kinematics/cartesian.py	2022-12-28 23:06:59.894994587 -0500
++++ klippy/kinematics/cartesian.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import stepper
++from .. import stepper
+ 
+ class CartKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/kinematics/corexy.py klippy/kinematics/corexy.py
+--- klippy-stock/kinematics/corexy.py	2022-12-28 23:06:59.894994587 -0500
++++ klippy/kinematics/corexy.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging, math
+-import stepper
++from .. import stepper
+ 
+ class CoreXYKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/kinematics/corexz.py klippy/kinematics/corexz.py
+--- klippy-stock/kinematics/corexz.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/corexz.py	2022-12-28 23:07:11.080946765 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging, math
+-import stepper
++from .. import stepper
+ 
+ class CoreXZKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/kinematics/delta.py klippy/kinematics/delta.py
+--- klippy-stock/kinematics/delta.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/delta.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import stepper, mathutil
++from .. import stepper, mathutil
+ 
+ # Slow moves once the ratio of tower to XY movement exceeds SLOW_RATIO
+ SLOW_RATIO = 3.
+diff -urpN klippy-stock/kinematics/deltesian.py klippy/kinematics/deltesian.py
+--- klippy-stock/kinematics/deltesian.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/deltesian.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import stepper
++from .. import stepper
+ 
+ # Slow moves once the ratio of tower to XY movement exceeds SLOW_RATIO
+ SLOW_RATIO = 3.
+diff -urpN klippy-stock/kinematics/extruder.py klippy/kinematics/extruder.py
+--- klippy-stock/kinematics/extruder.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/extruder.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import stepper, chelper
++from .. import stepper, chelper
+ 
+ class ExtruderStepper:
+     def __init__(self, config):
+diff -urpN klippy-stock/kinematics/hybrid_corexy.py klippy/kinematics/hybrid_corexy.py
+--- klippy-stock/kinematics/hybrid_corexy.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/hybrid_corexy.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import stepper
++from .. import stepper
+ from . import idex_modes
+ 
+ # The hybrid-corexy kinematic is also known as Markforged kinematics
+diff -urpN klippy-stock/kinematics/hybrid_corexz.py klippy/kinematics/hybrid_corexz.py
+--- klippy-stock/kinematics/hybrid_corexz.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/hybrid_corexz.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging
+-import stepper
++from .. import stepper
+ from . import idex_modes
+ 
+ # The hybrid-corexz kinematic is also known as Markforged kinematics
+diff -urpN klippy-stock/kinematics/polar.py klippy/kinematics/polar.py
+--- klippy-stock/kinematics/polar.py	2022-12-28 23:06:59.895994583 -0500
++++ klippy/kinematics/polar.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import logging, math
+-import stepper
++from .. import stepper
+ 
+ class PolarKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/kinematics/rotary_delta.py klippy/kinematics/rotary_delta.py
+--- klippy-stock/kinematics/rotary_delta.py	2022-12-28 23:06:59.896994579 -0500
++++ klippy/kinematics/rotary_delta.py	2022-12-28 23:07:11.081946761 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging
+-import stepper, mathutil, chelper
++from .. import stepper, mathutil, chelper
+ 
+ class RotaryDeltaKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/kinematics/winch.py klippy/kinematics/winch.py
+--- klippy-stock/kinematics/winch.py	2022-12-28 23:06:59.896994579 -0500
++++ klippy/kinematics/winch.py	2022-12-28 23:07:11.081946761 -0500
+@@ -3,7 +3,7 @@
+ # Copyright (C) 2018-2021  Kevin O'Connor <kevin@koconnor.net>
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+-import stepper, mathutil
++from .. import stepper, mathutil
+ 
+ class WinchKinematics:
+     def __init__(self, toolhead, config):
+diff -urpN klippy-stock/klippy.py klippy/klippy.py
+--- klippy-stock/klippy.py	2022-12-28 23:06:59.897994574 -0500
++++ klippy/klippy.py	2022-12-28 23:07:11.082946757 -0500
+@@ -5,8 +5,8 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, os, gc, optparse, logging, time, collections, importlib
+-import util, reactor, queuelogger, msgproto
+-import gcode, configfile, pins, mcu, toolhead, webhooks
++from . import util, reactor, queuelogger, msgproto
++from . import gcode, configfile, pins, mcu, toolhead, webhooks
+ 
+ message_ready = "Printer is ready"
+ 
+@@ -118,7 +118,7 @@ class Printer:
+             if default is not configfile.sentinel:
+                 return default
+             raise self.config_error("Unable to load module '%s'" % (section,))
+-        mod = importlib.import_module('extras.' + module_name)
++        mod = importlib.import_module('.extras.' + module_name)
+         init_func = 'load_config'
+         if len(module_parts) > 1:
+             init_func = 'load_config_prefix'
+@@ -283,7 +283,7 @@ def import_test():
+                 if not os.path.exists(iname):
+                     continue
+                 module_name = fname
+-            importlib.import_module(mname + '.' + module_name)
++            importlib.import_module("." + mname + '.' + module_name, package="klippy")
+     sys.exit(0)
+ 
+ def arg_dictionary(option, opt_str, value, parser):
+diff -urpN klippy-stock/mathutil.py klippy/mathutil.py
+--- klippy-stock/mathutil.py	2022-12-28 23:06:59.897994574 -0500
++++ klippy/mathutil.py	2022-12-28 23:07:11.082946757 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, multiprocessing, traceback
+-import queuelogger
++from . import queuelogger
+ 
+ 
+ ######################################################################
+diff -urpN klippy-stock/mcu.py klippy/mcu.py
+--- klippy-stock/mcu.py	2022-12-28 23:06:59.897994574 -0500
++++ klippy/mcu.py	2022-12-28 23:07:11.082946757 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import sys, os, zlib, logging, math
+-import serialhdl, msgproto, pins, chelper, clocksync
++from . import serialhdl, msgproto, pins, chelper, clocksync
+ 
+ class error(Exception):
+     pass
+diff -urpN klippy-stock/parsedump.py klippy/parsedump.py
+--- klippy-stock/parsedump.py	2022-12-28 23:06:59.897994574 -0500
++++ klippy/parsedump.py	2022-12-28 23:07:11.082946757 -0500
+@@ -5,7 +5,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import os, sys, logging
+-import msgproto
++from . import msgproto
+ 
+ def read_dictionary(filename):
+     dfile = open(filename, 'rb')
+diff -urpN klippy-stock/reactor.py klippy/reactor.py
+--- klippy-stock/reactor.py	2022-12-28 23:06:59.898994570 -0500
++++ klippy/reactor.py	2022-12-28 23:07:11.082946757 -0500
+@@ -5,7 +5,7 @@
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import os, gc, select, math, time, logging, queue
+ import greenlet
+-import chelper, util
++from . import chelper, util
+ 
+ _NOW = 0.
+ _NEVER = 9999999999999999.
+diff -urpN klippy-stock/serialhdl.py klippy/serialhdl.py
+--- klippy-stock/serialhdl.py	2022-12-28 23:06:59.898994570 -0500
++++ klippy/serialhdl.py	2022-12-28 23:07:11.082946757 -0500
+@@ -6,7 +6,7 @@
+ import logging, threading, os
+ import serial
+ 
+-import msgproto, chelper, util
++from . import msgproto, chelper, util
+ 
+ class error(Exception):
+     pass
+diff -urpN klippy-stock/stepper.py klippy/stepper.py
+--- klippy-stock/stepper.py	2022-12-28 23:06:59.898994570 -0500
++++ klippy/stepper.py	2022-12-28 23:07:11.082946757 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, collections
+-import chelper
++from . import chelper
+ 
+ class error(Exception):
+     pass
+diff -urpN klippy-stock/toolhead.py klippy/toolhead.py
+--- klippy-stock/toolhead.py	2022-12-28 23:06:59.898994570 -0500
++++ klippy/toolhead.py	2022-12-28 23:07:11.082946757 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import math, logging, importlib
+-import mcu, chelper, kinematics.extruder
++from . import mcu, chelper, kinematics
+ 
+ # Common suffixes: _d is distance (in mm), _v is velocity (in
+ #   mm/second), _v2 is velocity squared (mm^2/s^2), _t is time (in
+diff -urpN klippy-stock/webhooks.py klippy/webhooks.py
+--- klippy-stock/webhooks.py	2022-12-28 23:06:59.898994570 -0500
++++ klippy/webhooks.py	2022-12-28 23:07:11.082946757 -0500
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license
+ import logging, socket, os, sys, errno, json, collections
+-import gcode
++from . import gcode
+ 
+ REQUEST_LOG_SIZE = 20
+ 
