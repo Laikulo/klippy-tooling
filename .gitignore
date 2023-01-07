@@ -1,2 +1,9 @@
-klippy/
 !klippy/.gitkeep
+klippy/
+!hub-ctrl/.gitkeep
+hub-ctrl/
+*.egg-info/
+dist/
+venv/
+
+*.swp

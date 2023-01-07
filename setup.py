@@ -1,0 +1,45 @@
+from setuptools import setup
+import subprocess, sys, os, logging
+from setuptools.command.build import build, SubCommand
+from setuptools import Command
+from glob import glob
+
+class BuildCHelperSubCommand(build):
+    def run(self):
+        build_env = dict(os.environ)
+        build_env['OVERRIDE_CHELPER_OUTPUT'] = os.path.join(os.getcwd(),f"{self.build_lib}/klippy/chelper/c_helper.so")
+        build_env['OVERRIDE_HUBCTRL_OUTPUT'] = os.path.join(os.getcwd(),f"{self.build_lib}/klippy/chelper/hub-ctrl")
+        build_dir=os.path.join(os.getcwd(), self.build_lib)
+        subprocess.run([sys.executable, os.path.join(os.getcwd(),"compile.py")], cwd=build_dir, check=True, env=build_env)
+    
+    def get_source_files(self):
+        source_list = []
+        source_list += glob("klippy/chelper/*.[ch]")
+        source_list += glob("hub-ctrl/*.[ch]")
+        source_list.append("compile.py")
+        return source_list
+
+    def get_outputs(self):
+        return [
+                f"{self.build_lib}/klippy/chelper/c_helper.so",
+                f"{self.build_lib}/klippy/chelper/hub-ctrl"
+        ]
+
+
+class BuildKlipperCommand(build):
+    def __init__(self,dist):
+        super().__init__(dist)
+        self.sub_commands.append(('build_klipper_chelper', None))
+    def run(self):
+        super().run()
+        from pprint import pprint as p
+        for sc in self.get_sub_commands():
+            p(self.get_finalized_command(sc).get_outputs())
+
+
+setup(
+    cmdclass={
+        'build': BuildKlipperCommand,
+        'build_klipper_chelper': BuildCHelperSubCommand
+    }
+)

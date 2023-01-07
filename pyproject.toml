@@ -1,23 +1,33 @@
 [build-system]
-requires = ["poetry-core>=1.0.0", "setuptools", "cffi"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=63.0", "cffi"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
+[project]
 name = "klippy"
 version = "0.11.0"
 description = "Klipper's host daemon" 
-authors = [ "The Klipper Authors <all@klipper3d.com>" ]
-build = "build_helper_config.py"
-exclude = ["klippy/chelper/*.c", "klippy/chelper/*.h" ]
+dependencies= [
+	"cffi==1.14.6",
+	"pyserial==3.4",
+	"greenlet==1.1.2",
+	"Jinja2==2.11.3",
+	"python-can==3.3.4",
+	"markupsafe==1.1.1"
+]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-cffi = "1.14.6"
-pyserial = "3.4"
-greenlet = "1.1.2"
-Jinja2 = "2.11.3"
-python-can = "3.3.4"
-markupsafe = "1.1.1"
-
-[tool.poetry.scripts]
+[project.scripts]
 klippy = "klippy.klippy:main"
+
+[tool.setuptools.packages.find]
+include = [
+ "klippy",
+ "klippy.*"
+]
+
+[tool.setuptools.exclude-package-data]
+"klippy.chelper" = [
+	"*.[ch]"
+]
+
+
+
