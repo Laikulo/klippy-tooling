@@ -2,7 +2,11 @@ from setuptools import setup
 import subprocess, sys, os, logging
 from setuptools.command.build import build, SubCommand
 from setuptools import Command
+from wheel.bdist_wheel import bdist_wheel
 from glob import glob
+
+
+## Handling for klipper's building of the C helper and hubctl
 
 class BuildCHelperSubCommand(build):
     def run(self):
@@ -30,16 +34,20 @@ class BuildKlipperCommand(build):
     def __init__(self,dist):
         super().__init__(dist)
         self.sub_commands.append(('build_klipper_chelper', None))
-    def run(self):
-        super().run()
-        from pprint import pprint as p
-        for sc in self.get_sub_commands():
-            p(self.get_finalized_command(sc).get_outputs())
 
+## Because the above doesn't trigger bdist_wheel to treat this as non pure-python
+
+class ImpureBdistWheel(bdist_wheel):
+    description = "create an explicitly nonportable wheel"
+
+    def finalize_options(self):
+        super().finalize_options()
+        self.root_is_pure = False
 
 setup(
     cmdclass={
         'build': BuildKlipperCommand,
-        'build_klipper_chelper': BuildCHelperSubCommand
+        'build_klipper_chelper': BuildCHelperSubCommand,
+        'bdist_wheel': ImpureBdistWheel
     }
 )
