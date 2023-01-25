@@ -2,7 +2,7 @@
 
 klippy_version="0.11.0"
 if [[ ! -f klipper-${klippy_version}.tar.gz ]]; then 
-	curl -L https://github.com/Klipper3d/klipper/archive/refs/tags/${klippy_version}.tar.gz -o klipper-${klippy_version}.tar.gz
+	curl -L https://github.com/Klipper3d/klipper/archive/refs/tags/v${klippy_version}.tar.gz -o klipper-${klippy_version}.tar.gz
 fi
 
 tar xvf klipper-${klippy_version}.tar.gz --strip-components 1 \
