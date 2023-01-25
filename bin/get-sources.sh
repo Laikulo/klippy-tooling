@@ -7,9 +7,12 @@ fi
 
 tar xvf klipper-${klippy_version}.tar.gz --strip-components 1 \
 	--transform 's:lib/hub-ctrl:hub-ctrl:' \
+	--transform 's:/test/:/testcases/:' \
+	--transform 's:/test$:/testcases:' \
 	--transform 's:scripts/klippy-requirements\.txt:upstream-requirements.txt:' \
-	--transform 's:test/klippy:testcases:' \
+	--transform 's:scripts/test_klippy\.py:test_klippy.py:' \
 	klipper-${klippy_version}/lib/hub-ctrl/ \
 	klipper-${klippy_version}/klippy \
+	klipper-${klippy_version}/scripts/test_klippy.py \
 	klipper-${klippy_version}/scripts/klippy-requirements.txt \
-	klipper-${klippy_version}/test/klippy
+	klipper-${klippy_version}/test
