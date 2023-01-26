@@ -1,6 +1,6 @@
 diff -urpN klippy-stock/console.py klippy/console.py
 --- klippy-stock/console.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/console.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/console.py	2023-01-26 01:03:23.839988421 +0000
 @@ -5,7 +5,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -12,7 +12,7 @@ diff -urpN klippy-stock/console.py klippy/console.py
    This is a debugging console for the Klipper micro-controller.
 diff -urpN klippy-stock/extras/bed_tilt.py klippy/extras/bed_tilt.py
 --- klippy-stock/extras/bed_tilt.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/bed_tilt.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/bed_tilt.py	2023-01-26 01:03:23.839988421 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -24,7 +24,7 @@ diff -urpN klippy-stock/extras/bed_tilt.py klippy/extras/bed_tilt.py
  class BedTilt:
 diff -urpN klippy-stock/extras/bus.py klippy/extras/bus.py
 --- klippy-stock/extras/bus.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/bus.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/bus.py	2023-01-26 01:03:23.839988421 +0000
 @@ -3,7 +3,7 @@
  # Copyright (C) 2018,2019  Kevin O'Connor <kevin@koconnor.net>
  #
@@ -36,7 +36,7 @@ diff -urpN klippy-stock/extras/bus.py klippy/extras/bus.py
      # Find enumerations for the given bus
 diff -urpN klippy-stock/extras/delta_calibrate.py klippy/extras/delta_calibrate.py
 --- klippy-stock/extras/delta_calibrate.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/delta_calibrate.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/delta_calibrate.py	2023-01-26 01:03:23.839988421 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -48,7 +48,7 @@ diff -urpN klippy-stock/extras/delta_calibrate.py klippy/extras/delta_calibrate.
  # A "stable position" is a 3-tuple containing the number of steps
 diff -urpN klippy-stock/extras/ds18b20.py klippy/extras/ds18b20.py
 --- klippy-stock/extras/ds18b20.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/ds18b20.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/ds18b20.py	2023-01-26 01:03:23.839988421 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -60,7 +60,7 @@ diff -urpN klippy-stock/extras/ds18b20.py klippy/extras/ds18b20.py
  # Temperature can be sampled at any time but conversion time is ~750ms, so
 diff -urpN klippy-stock/extras/endstop_phase.py klippy/extras/endstop_phase.py
 --- klippy-stock/extras/endstop_phase.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/endstop_phase.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/endstop_phase.py	2023-01-26 01:03:23.849988305 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -72,7 +72,7 @@ diff -urpN klippy-stock/extras/endstop_phase.py klippy/extras/endstop_phase.py
  
 diff -urpN klippy-stock/extras/extruder_stepper.py klippy/extras/extruder_stepper.py
 --- klippy-stock/extras/extruder_stepper.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/extruder_stepper.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/extruder_stepper.py	2023-01-26 01:03:23.849988305 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -84,7 +84,7 @@ diff -urpN klippy-stock/extras/extruder_stepper.py klippy/extras/extruder_steppe
      def __init__(self, config):
 diff -urpN klippy-stock/extras/force_move.py klippy/extras/force_move.py
 --- klippy-stock/extras/force_move.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/force_move.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/force_move.py	2023-01-26 01:03:23.849988305 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -96,7 +96,7 @@ diff -urpN klippy-stock/extras/force_move.py klippy/extras/force_move.py
  BUZZ_VELOCITY = BUZZ_DISTANCE / .250
 diff -urpN klippy-stock/extras/input_shaper.py klippy/extras/input_shaper.py
 --- klippy-stock/extras/input_shaper.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/input_shaper.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/input_shaper.py	2023-01-26 01:03:23.849988305 +0000
 @@ -5,7 +5,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -108,7 +108,7 @@ diff -urpN klippy-stock/extras/input_shaper.py klippy/extras/input_shaper.py
  class InputShaperParams:
 diff -urpN klippy-stock/extras/manual_stepper.py klippy/extras/manual_stepper.py
 --- klippy-stock/extras/manual_stepper.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/manual_stepper.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/manual_stepper.py	2023-01-26 01:03:23.849988305 +0000
 @@ -3,7 +3,7 @@
  # Copyright (C) 2019-2021  Kevin O'Connor <kevin@koconnor.net>
  #
@@ -120,7 +120,7 @@ diff -urpN klippy-stock/extras/manual_stepper.py klippy/extras/manual_stepper.py
  class ManualStepper:
 diff -urpN klippy-stock/extras/motion_report.py klippy/extras/motion_report.py
 --- klippy-stock/extras/motion_report.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/motion_report.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/motion_report.py	2023-01-26 01:03:23.859988189 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -132,7 +132,7 @@ diff -urpN klippy-stock/extras/motion_report.py klippy/extras/motion_report.py
  
 diff -urpN klippy-stock/extras/probe.py klippy/extras/probe.py
 --- klippy-stock/extras/probe.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/probe.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/probe.py	2023-01-26 01:03:23.859988189 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -144,7 +144,7 @@ diff -urpN klippy-stock/extras/probe.py klippy/extras/probe.py
  HINT_TIMEOUT = """
 diff -urpN klippy-stock/extras/replicape.py klippy/extras/replicape.py
 --- klippy-stock/extras/replicape.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/replicape.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/replicape.py	2023-01-26 01:03:23.859988189 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -156,7 +156,7 @@ diff -urpN klippy-stock/extras/replicape.py klippy/extras/replicape.py
  REPLICAPE_MAX_CURRENT = 3.84
 diff -urpN klippy-stock/extras/shaper_calibrate.py klippy/extras/shaper_calibrate.py
 --- klippy-stock/extras/shaper_calibrate.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/shaper_calibrate.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/shaper_calibrate.py	2023-01-26 01:03:23.859988189 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -168,7 +168,7 @@ diff -urpN klippy-stock/extras/shaper_calibrate.py klippy/extras/shaper_calibrat
  MAX_FREQ = 200.
 diff -urpN klippy-stock/extras/sx1509.py klippy/extras/sx1509.py
 --- klippy-stock/extras/sx1509.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/sx1509.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/sx1509.py	2023-01-26 01:03:23.859988189 +0000
 @@ -3,7 +3,7 @@
  # Copyright (C) 2018  Florian Heilmann <Florian.Heilmann@gmx.net>
  #
@@ -180,7 +180,7 @@ diff -urpN klippy-stock/extras/sx1509.py klippy/extras/sx1509.py
  # Word registers
 diff -urpN klippy-stock/extras/temperature_mcu.py klippy/extras/temperature_mcu.py
 --- klippy-stock/extras/temperature_mcu.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/temperature_mcu.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/temperature_mcu.py	2023-01-26 01:03:23.869988072 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -192,7 +192,7 @@ diff -urpN klippy-stock/extras/temperature_mcu.py klippy/extras/temperature_mcu.
  SAMPLE_COUNT = 8
 diff -urpN klippy-stock/extras/tmc.py klippy/extras/tmc.py
 --- klippy-stock/extras/tmc.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/tmc.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/tmc.py	2023-01-26 01:03:23.869988072 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -204,7 +204,7 @@ diff -urpN klippy-stock/extras/tmc.py klippy/extras/tmc.py
  ######################################################################
 diff -urpN klippy-stock/extras/z_tilt.py klippy/extras/z_tilt.py
 --- klippy-stock/extras/z_tilt.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/extras/z_tilt.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/extras/z_tilt.py	2023-01-26 01:03:23.869988072 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -216,7 +216,7 @@ diff -urpN klippy-stock/extras/z_tilt.py klippy/extras/z_tilt.py
  class ZAdjustHelper:
 diff -urpN klippy-stock/kinematics/cartesian.py klippy/kinematics/cartesian.py
 --- klippy-stock/kinematics/cartesian.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/cartesian.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/cartesian.py	2023-01-26 01:03:23.869988072 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -228,7 +228,7 @@ diff -urpN klippy-stock/kinematics/cartesian.py klippy/kinematics/cartesian.py
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/kinematics/corexy.py klippy/kinematics/corexy.py
 --- klippy-stock/kinematics/corexy.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/corexy.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/corexy.py	2023-01-26 01:03:23.879987956 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -240,7 +240,7 @@ diff -urpN klippy-stock/kinematics/corexy.py klippy/kinematics/corexy.py
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/kinematics/corexz.py klippy/kinematics/corexz.py
 --- klippy-stock/kinematics/corexz.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/corexz.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/corexz.py	2023-01-26 01:03:23.879987956 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -252,7 +252,7 @@ diff -urpN klippy-stock/kinematics/corexz.py klippy/kinematics/corexz.py
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/kinematics/delta.py klippy/kinematics/delta.py
 --- klippy-stock/kinematics/delta.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/delta.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/delta.py	2023-01-26 01:03:23.879987956 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -264,7 +264,7 @@ diff -urpN klippy-stock/kinematics/delta.py klippy/kinematics/delta.py
  SLOW_RATIO = 3.
 diff -urpN klippy-stock/kinematics/deltesian.py klippy/kinematics/deltesian.py
 --- klippy-stock/kinematics/deltesian.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/deltesian.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/deltesian.py	2023-01-26 01:03:23.879987956 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -276,7 +276,7 @@ diff -urpN klippy-stock/kinematics/deltesian.py klippy/kinematics/deltesian.py
  SLOW_RATIO = 3.
 diff -urpN klippy-stock/kinematics/extruder.py klippy/kinematics/extruder.py
 --- klippy-stock/kinematics/extruder.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/extruder.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/extruder.py	2023-01-26 01:03:23.879987956 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -288,7 +288,7 @@ diff -urpN klippy-stock/kinematics/extruder.py klippy/kinematics/extruder.py
      def __init__(self, config):
 diff -urpN klippy-stock/kinematics/hybrid_corexy.py klippy/kinematics/hybrid_corexy.py
 --- klippy-stock/kinematics/hybrid_corexy.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/hybrid_corexy.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/hybrid_corexy.py	2023-01-26 01:03:23.889987840 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -300,7 +300,7 @@ diff -urpN klippy-stock/kinematics/hybrid_corexy.py klippy/kinematics/hybrid_cor
  # The hybrid-corexy kinematic is also known as Markforged kinematics
 diff -urpN klippy-stock/kinematics/hybrid_corexz.py klippy/kinematics/hybrid_corexz.py
 --- klippy-stock/kinematics/hybrid_corexz.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/hybrid_corexz.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/hybrid_corexz.py	2023-01-26 01:03:23.889987840 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -312,7 +312,7 @@ diff -urpN klippy-stock/kinematics/hybrid_corexz.py klippy/kinematics/hybrid_cor
  # The hybrid-corexz kinematic is also known as Markforged kinematics
 diff -urpN klippy-stock/kinematics/polar.py klippy/kinematics/polar.py
 --- klippy-stock/kinematics/polar.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/polar.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/polar.py	2023-01-26 01:03:23.889987840 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -324,7 +324,7 @@ diff -urpN klippy-stock/kinematics/polar.py klippy/kinematics/polar.py
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/kinematics/rotary_delta.py klippy/kinematics/rotary_delta.py
 --- klippy-stock/kinematics/rotary_delta.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/rotary_delta.py	2023-01-25 23:18:34.433129904 +0000
++++ klippy/kinematics/rotary_delta.py	2023-01-26 01:03:23.889987840 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -336,7 +336,7 @@ diff -urpN klippy-stock/kinematics/rotary_delta.py klippy/kinematics/rotary_delt
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/kinematics/winch.py klippy/kinematics/winch.py
 --- klippy-stock/kinematics/winch.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/kinematics/winch.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/kinematics/winch.py	2023-01-26 01:03:23.889987840 +0000
 @@ -3,7 +3,7 @@
  # Copyright (C) 2018-2021  Kevin O'Connor <kevin@koconnor.net>
  #
@@ -348,7 +348,7 @@ diff -urpN klippy-stock/kinematics/winch.py klippy/kinematics/winch.py
      def __init__(self, toolhead, config):
 diff -urpN klippy-stock/klippy.py klippy/klippy.py
 --- klippy-stock/klippy.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/klippy.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/klippy.py	2023-01-26 01:03:23.899987724 +0000
 @@ -5,8 +5,8 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -380,7 +380,7 @@ diff -urpN klippy-stock/klippy.py klippy/klippy.py
  def arg_dictionary(option, opt_str, value, parser):
 diff -urpN klippy-stock/mathutil.py klippy/mathutil.py
 --- klippy-stock/mathutil.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/mathutil.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/mathutil.py	2023-01-26 01:03:23.899987724 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -392,7 +392,7 @@ diff -urpN klippy-stock/mathutil.py klippy/mathutil.py
  ######################################################################
 diff -urpN klippy-stock/mcu.py klippy/mcu.py
 --- klippy-stock/mcu.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/mcu.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/mcu.py	2023-01-26 01:03:23.899987724 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -404,7 +404,7 @@ diff -urpN klippy-stock/mcu.py klippy/mcu.py
      pass
 diff -urpN klippy-stock/parsedump.py klippy/parsedump.py
 --- klippy-stock/parsedump.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/parsedump.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/parsedump.py	2023-01-26 01:03:23.899987724 +0000
 @@ -5,7 +5,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -416,7 +416,7 @@ diff -urpN klippy-stock/parsedump.py klippy/parsedump.py
      dfile = open(filename, 'rb')
 diff -urpN klippy-stock/reactor.py klippy/reactor.py
 --- klippy-stock/reactor.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/reactor.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/reactor.py	2023-01-26 01:03:23.909987608 +0000
 @@ -5,7 +5,7 @@
  # This file may be distributed under the terms of the GNU GPLv3 license.
  import os, gc, select, math, time, logging, queue
@@ -428,7 +428,7 @@ diff -urpN klippy-stock/reactor.py klippy/reactor.py
  _NEVER = 9999999999999999.
 diff -urpN klippy-stock/serialhdl.py klippy/serialhdl.py
 --- klippy-stock/serialhdl.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/serialhdl.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/serialhdl.py	2023-01-26 01:03:23.909987608 +0000
 @@ -6,7 +6,7 @@
  import logging, threading, os
  import serial
@@ -440,7 +440,7 @@ diff -urpN klippy-stock/serialhdl.py klippy/serialhdl.py
      pass
 diff -urpN klippy-stock/stepper.py klippy/stepper.py
 --- klippy-stock/stepper.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/stepper.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/stepper.py	2023-01-26 01:03:23.909987608 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
@@ -452,19 +452,33 @@ diff -urpN klippy-stock/stepper.py klippy/stepper.py
      pass
 diff -urpN klippy-stock/toolhead.py klippy/toolhead.py
 --- klippy-stock/toolhead.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/toolhead.py	2023-01-25 23:18:34.443129785 +0000
-@@ -4,7 +4,7 @@
++++ klippy/toolhead.py	2023-01-26 01:14:27.942271340 +0000
+@@ -4,7 +4,8 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license.
  import math, logging, importlib
 -import mcu, chelper, kinematics.extruder
 +from . import mcu, chelper, kinematics
++from .kinematics import extruder
  
  # Common suffixes: _d is distance (in mm), _v is velocity (in
  #   mm/second), _v2 is velocity squared (mm^2/s^2), _t is time (in
+@@ -250,10 +251,10 @@ class ToolHead:
+         # Create kinematics class
+         gcode = self.printer.lookup_object('gcode')
+         self.Coord = gcode.Coord
+-        self.extruder = kinematics.extruder.DummyExtruder(self.printer)
++        self.extruder = extruder.DummyExtruder(self.printer)
+         kin_name = config.get('kinematics')
+         try:
+-            mod = importlib.import_module('kinematics.' + kin_name)
++            mod = importlib.import_module('.kinematics.' + kin_name, package="klippy")
+             self.kin = mod.load_kinematics(self, config)
+         except config.error as e:
+             raise
 diff -urpN klippy-stock/webhooks.py klippy/webhooks.py
 --- klippy-stock/webhooks.py	2022-11-29 02:27:09.000000000 +0000
-+++ klippy/webhooks.py	2023-01-25 23:18:34.443129785 +0000
++++ klippy/webhooks.py	2023-01-26 01:03:23.909987608 +0000
 @@ -4,7 +4,7 @@
  #
  # This file may be distributed under the terms of the GNU GPLv3 license
