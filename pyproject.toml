@@ -24,6 +24,10 @@ include = [
  "klippy.*"
 ]
 
+[tool.setuptools.package-data]
+"klippy.extras" = [ "*.cfg" ]
+"klippy.extras.display" = [ "*.cfg" ]
+
 [tool.setuptools.exclude-package-data]
 "klippy.chelper" = [
 	"*.[ch]"
