@@ -12,5 +12,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.2
       - name: Build
-        uses: ./.gitlab/actions/build-klipper
+        uses: ./.github/actions/klippy-build
 
