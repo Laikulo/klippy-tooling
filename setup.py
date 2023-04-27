@@ -4,6 +4,7 @@ from setuptools.command.build import build, SubCommand
 from setuptools import Command
 from wheel.bdist_wheel import bdist_wheel
 from glob import glob
+import setuptools.command.install as orig_install
 
 
 ## Handling for klipper's building of the C helper and hubctl
@@ -44,10 +45,21 @@ class ImpureBdistWheel(bdist_wheel):
         super().finalize_options()
         self.root_is_pure = False
 
+## Similar case with install
+
+class ImpureInstall(orig_install.install):
+    description = "Install, but always into platlib"
+
+    def finalize_options(self):
+        super().finalize_options()
+        self.install_lib = self.install_platlib
+        
+
 setup(
     cmdclass={
         'build': BuildKlipperCommand,
         'build_klipper_chelper': BuildCHelperSubCommand,
-        'bdist_wheel': ImpureBdistWheel
+        'bdist_wheel': ImpureBdistWheel,
+        'install': ImpureInstall
     }
 )
