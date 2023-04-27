@@ -1,0 +1,8 @@
+FROM opensuse/leap:15.4
+RUN zypper -n in python39 python39-pip python39-devel python39-setuptools python39-tools tar patch gcc gzip libusb-devel
+RUN useradd -m builder
+USER builder
+RUN pip3.9 install build
+ENV PATH="/home/builder/.local/bin:$PATH"
+WORKDIR /home/builder
+

@@ -1,0 +1,8 @@
+name: 'Klippy Build'
+description: 'Builds klippy for x86_64 with OpenSuse Leap'
+inputs: {}
+oututs: {}
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args: []

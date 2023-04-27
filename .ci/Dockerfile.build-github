@@ -1,0 +1,7 @@
+FROM opensuse/leap:15.4
+RUN zypper -n in python39 python39-pip python39-devel python39-setuptools python39-tools tar patch gcc gzip libusb-devel
+# Normally this is not reccomended, but needed for GHA
+RUN pip3.9 install build
+ADD ./github-run.sh /opt
+ENTRYPOINT [ "sh", "-c" ]
+CMD [ "/opt/github-run.sh" ]
