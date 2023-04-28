@@ -7,7 +7,7 @@ name = "klippy"
 version = "0.11.0"
 description = "Klipper's host daemon" 
 dependencies= [
-	"cffi==1.14.6",
+	"cffi==1.15.1",
 	"pyserial==3.4",
 	"greenlet==1.1.2",
 	"Jinja2==2.11.3",
@@ -21,10 +21,11 @@ klippy = "klippy.klippy:main"
 [tool.setuptools.packages.find]
 include = [
  "klippy",
- "klippy.*"
+ "klippy.*",
 ]
 
 [tool.setuptools.package-data]
+klippy = [ "config/*", "docs/*" ]
 "klippy.extras" = [ "*.cfg" ]
 "klippy.extras.display" = [ "*.cfg" ]
 
