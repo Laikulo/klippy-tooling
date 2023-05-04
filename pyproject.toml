@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "klippy"
-version = "0.12.0.dev0+git.a3eebab"
+version = "0.12.0.dev0+git.02b6b23"
 description = "Klipper's host daemon" 
 dependencies= [
 	"cffi==1.15.1",
