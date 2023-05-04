@@ -11,3 +11,5 @@ upstream-requirements.txt
 /klipper-*.tar.gz
 /testcases/
 /test_klippy.py
+
+/upstream/
