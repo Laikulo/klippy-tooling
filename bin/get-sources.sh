@@ -6,4 +6,4 @@ if [[ -d upstream ]]; then
 	rm -rf upstream
 fi
 
-git clone --depth 1 --single-branch -b "${klippy_version}" "${klippy_upstream}" upstream
+git clone --depth 1 -b "${klippy_version}" "${klippy_upstream}" upstream
