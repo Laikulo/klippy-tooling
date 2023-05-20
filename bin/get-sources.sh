@@ -6,4 +6,8 @@ if [[ -d upstream ]]; then
 	rm -rf upstream
 fi
 
-git clone --depth 1 -b "${klippy_version}" "${klippy_upstream}" upstream
+mkdir upstream
+cd upstream
+git init
+git fetch --depth 1 "${klippy_upstream}" "${klippy_version}"
+git checkout FETCH_HEAD
