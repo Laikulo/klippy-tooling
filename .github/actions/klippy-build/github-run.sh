@@ -1,6 +1,2 @@
 #!/bin/bash
-
-#We can assume we are already in the workspace
-bin/get-sources.sh
-bin/modify.sh
-pyproject-build
+bin/prepare.sh laikulo-devel https://github.com/Laikulo/klipper.git
