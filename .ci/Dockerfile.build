@@ -1,5 +1,5 @@
 FROM opensuse/leap:15.4
-RUN zypper -n in python39 python39-pip python39-devel python39-setuptools python39-tools tar patch gcc gzip libusb-devel
+RUN zypper -n in python39 python39-pip python39-devel python39-setuptools python39-tools tar patch gcc gzip libusb-devel git
 RUN useradd -m builder
 USER builder
 RUN pip3.9 install build
