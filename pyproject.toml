@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "klippy"
-version = "0.12.0.dev0+git.0ba3fa3"
+version = "0.12.0.dev0+git.3ee1687"
 description = "Klipper's host daemon" 
 dependencies= [
 	"cffi==1.15.1",
 	"pyserial==3.4",
-	"greenlet==1.1.2",
+	"greenlet==2.0.2",
 	"Jinja2==2.11.3",
 	"python-can==3.3.4",
 	"markupsafe==1.1.1"
