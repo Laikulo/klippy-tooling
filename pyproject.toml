@@ -3,9 +3,11 @@ requires = ["setuptools>=63.0", "cffi", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "klippy"
-version = "0.12.0.dev0+git.7dee68d"
-description = "Klipper's host daemon" 
+name = "klipper-klippy-l"
+version = "0.12.0.dev280"
+license.text = "GPL-3.0-only"
+readme = "README-py.md"
+description = "Klipper's host daemon - Unofficial repackage, includes patches" 
 dependencies= [
 	"cffi==1.15.1",
 	"pyserial==3.4",
@@ -15,8 +17,12 @@ dependencies= [
 	"markupsafe==1.1.1"
 ]
 
+[project.urls]
+homepage = "https://github.com/laikulo/klippy"
+
 [project.scripts]
-klippy = "klippy.klippy:main"
+klipper-klippy = "klippy.klippy:main"
+klipper_klippy = "klippy.klippy:main"
 
 [tool.setuptools.packages.find]
 include = [
