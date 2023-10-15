@@ -61,7 +61,7 @@ jobs:
           git rebase FETCH_HEAD
 
       - name: Push rebased branch back
-        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == false }}
+        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == "false" }}
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
