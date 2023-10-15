@@ -6,6 +6,8 @@ import logging
 
 import klippy.chelper .builder as builder
 
+logging.basicConfig(level=logging.DEBUG)
+
 builder.build_chelper()
 builder.build_hub_ctrl()
 

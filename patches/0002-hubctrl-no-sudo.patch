@@ -1,0 +1,12 @@
+diff -urpN klippy/chelper/__init__.py klippy-stock/chelper/__init__.py
+--- klippy-stock/chelper/__init__.py	2023-10-15 14:37:33.171476858 -0400
++++ klippy/chelper/__init__.py	2023-10-15 14:36:50.104890814 -0400
+@@ -231,7 +231,7 @@ def get_ffi():
+ # hub-ctrl hub power controller
+ ######################################################################
+ 
+-HC_CMD = "sudo %s/hub-ctrl -h 0 -P 2 -p %d"
++HC_CMD = "%s/hub-ctrl -h 0 -P 2 -p %d"
+ 
+ def run_hub_ctrl(enable_power):
+     os.system(HC_CMD % (hubdir, enable_power))

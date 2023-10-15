@@ -142,7 +142,6 @@ def do_py(path, namepath, tln):
         ast.fix_missing_locations(kast)
     if node_replacements:
         outtxt = apply_node_changes(intxt, node_replacements)
-        shutil.copyfile(path, "path.bak")
         with open(path, "w") as outfile:
             outfile.write(outtxt)
             outfile.truncate()
@@ -190,5 +189,6 @@ def apply_node_changes(input_text, nodes_to_change):
     return "\n".join(output_lines)
         
 
-walk_py_dir("klippy")
+target_klippy=sys.argv[1] if len(sys.argv) > 0 else "klippy"
+walk_py_dir(sys.argv[1])
 
