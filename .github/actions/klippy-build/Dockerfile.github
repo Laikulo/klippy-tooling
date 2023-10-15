@@ -1,5 +1,5 @@
 FROM opensuse/leap:15.5
-RUN zypper -n in python311 python311-pip python311-devel python311-setuptools python311-tools tar patch gcc gzip libusb-devel git
+RUN zypper -n in python311 python311-pip python311-devel python311-setuptools python311-tools tar patch gcc gzip libusb-devel git && alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 311
 # Normally this is not reccomended, but needed for GHA
 RUN pip3.11 install build
 ADD ./github-run.sh /opt
