@@ -45,7 +45,8 @@ jobs:
           REF_TO_FIND: ${{ steps.get_upstream_head.outputs.upstream_head }}
         run: |
           cd "$GITHUB_WORKSPACE/klipper"
-          if git branch --contains "$REF_TO_FIND" laikulo-devel >/dev/null 2>/dev/null; then
+          branch_list="$(git branch --contains "$REF_TO_FIND" laikulo-devel 2>/dev/null)"
+          if [[ $branch_list ]]; then
             RETVAL=true
           else
             RETVAL=false

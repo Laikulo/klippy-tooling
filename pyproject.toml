@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "klipper-klippy-l"
-version = "0.12.0.dev281"
+version = "0.12.0.dev283"
 license.text = "GPL-3.0-only"
 readme = "README-py.md"
 description = "Klipper's host daemon - Unofficial repackage, includes patches" 
@@ -15,6 +15,12 @@ dependencies= [
 	"Jinja2==2.11.3",
 	"python-can==3.3.4",
 	"markupsafe==1.1.1"
+]
+
+[project.optional-dependencies]
+resonanceTest = [
+	"numpy",
+	"matplotlib"
 ]
 
 [project.urls]
