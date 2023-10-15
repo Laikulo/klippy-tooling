@@ -57,6 +57,8 @@ jobs:
         if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
         run: |
           cd "$GITHUB_WORKSPACE/klipper"
+          git config user.name "Klippy-Tools-Bot"
+          git config user.email "aaron@haun.guru"
           git fetch https://github.com/Klipper3d/Klipper.git master
           git rebase FETCH_HEAD
 
