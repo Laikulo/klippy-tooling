@@ -13,8 +13,10 @@ jobs:
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_PRIVKEY }}
+          owner: Laikulo
+          repositories: "Klipper"
           
       - name: Sync klipper fork master branch
         env:
-          GITHUB_TOKEN: ${{steps.generate_token.outputs.token }}
+          GITHUB_TOKEN: ${ {steps.generate_token.outputs.token }}
         run: gh repo sync Laikulo/Klipper -b master
