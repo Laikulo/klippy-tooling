@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "upstream_head=$(git ls-remote https://github.com/Klipper3d/Klipper.git master | cut -f 1)" >> "$GITHUB_OUTPUT"
 
-      - name: Checkout upstream
+      - name: Checkout modified workbranch
         uses: actions/checkout@v4
         with:
           repository: 'Laikulo/Klipper'
