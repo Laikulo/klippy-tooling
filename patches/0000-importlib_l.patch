@@ -1,16 +1,16 @@
 diff -urpN klippy/klippy.py klippy-patched/klippy.py
---- klippy/klippy.py	2023-10-15 14:13:05.127464187 -0400
-+++ klippy-patched/klippy.py	2023-10-15 14:12:45.804161410 -0400
-@@ -118,7 +118,7 @@ class Printer:
-             if default is not configfile.sentinel:
-                 return default
-             raise self.config_error("Unable to load module '%s'" % (section,))
--        mod = importlib.import_module('extras.' + module_name)
-+        mod = importlib.import_module('klippy.extras.' + module_name)
-         init_func = 'load_config'
-         if len(module_parts) > 1:
-             init_func = 'load_config_prefix'
-@@ -283,7 +283,7 @@ def import_test():
+--- klippy-stock/klippy.py      2023-10-15 15:06:22.188395984 -0400
++++ klippy/klippy.py    2023-10-15 15:05:47.375117903 -0400
+@@ -114,7 +114,7 @@ class Printer:
+             # A module is considered external to klipper if its name includes at least one dot
+             module_fullname = module_name
+         else:
+-            module_fullname = 'extras.' + module_name
++            module_fullname = 'klippy.extras.' + module_name
+             py_name = os.path.join(os.path.dirname(__file__),
+                                    'extras', module_name + '.py')
+             py_dirname = os.path.join(os.path.dirname(__file__),
+@@ -291,7 +291,7 @@ def import_test():
                  if not os.path.exists(iname):
                      continue
                  module_name = fname
