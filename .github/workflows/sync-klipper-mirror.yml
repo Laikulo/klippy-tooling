@@ -51,7 +51,7 @@ jobs:
           else
             RETVAL=false
           fi
-          echo "REF_IS_IN_BRANCH=${RETVAL}" >> "$GITHUB_OUTPUT"
+          echo "REF_IS_IN_BRANCH=${RETVAL}" | tee -a "$GITHUB_OUTPUT"
 
       - name: Rebase laikulo branch
         if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == false }}
