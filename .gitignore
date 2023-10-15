@@ -5,6 +5,7 @@ hub-ctrl/
 *.egg-info/
 dist/
 venv/
+pub/
 
 *.swp
 upstream-requirements.txt
