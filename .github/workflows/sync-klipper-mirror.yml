@@ -54,14 +54,14 @@ jobs:
           echo "REF_IS_IN_BRANCH=${RETVAL}" | tee -a "$GITHUB_OUTPUT"
 
       - name: Rebase laikulo branch
-        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == false }}
+        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
         run: |
           cd "$GITHUB_WORKSPACE/klipper"
           git fetch https://github.com/Klipper3d/Klipper.git master
           git rebase FETCH_HEAD
 
       - name: Push rebased branch back
-        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == "false" }}
+        if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
