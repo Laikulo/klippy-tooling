@@ -1,7 +1,9 @@
+name: Build sdist from latest
+
 on:
   push:
     branches:
-     - nonexistant
+     - laikulo-devel
   workflow_dispatch: {}
 
 jobs:
