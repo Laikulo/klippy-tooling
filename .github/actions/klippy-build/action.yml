@@ -4,5 +4,5 @@ inputs: {}
 oututs: {}
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'Dockerfile.github'
   args: []
