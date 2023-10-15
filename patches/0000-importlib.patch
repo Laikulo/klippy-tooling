@@ -1,0 +1,33 @@
+diff -urpN klippy/klippy.py klippy-patched/klippy.py
+--- klippy/klippy.py	2023-10-15 14:13:05.127464187 -0400
++++ klippy-patched/klippy.py	2023-10-15 14:12:45.804161410 -0400
+@@ -118,7 +118,7 @@ class Printer:
+             if default is not configfile.sentinel:
+                 return default
+             raise self.config_error("Unable to load module '%s'" % (section,))
+-        mod = importlib.import_module('extras.' + module_name)
++        mod = importlib.import_module('klippy.extras.' + module_name)
+         init_func = 'load_config'
+         if len(module_parts) > 1:
+             init_func = 'load_config_prefix'
+@@ -283,7 +283,7 @@ def import_test():
+                 if not os.path.exists(iname):
+                     continue
+                 module_name = fname
+-            importlib.import_module(mname + '.' + module_name)
++            importlib.import_module("." + mname + '.' + module_name, package="klippy")
+     sys.exit(0)
+ 
+ def arg_dictionary(option, opt_str, value, parser):
+diff -urpN klippy/toolhead.py klippy-patched/toolhead.py
+--- klippy/toolhead.py	2023-10-15 14:13:05.174130780 -0400
++++ klippy-patched/toolhead.py	2023-10-15 14:12:45.804161410 -0400
+@@ -254,7 +254,7 @@ class ToolHead:
+         self.extruder = extruder.DummyExtruder(self.printer)
+         kin_name = config.get('kinematics')
+         try:
+-            mod = importlib.import_module('kinematics.' + kin_name)
++            mod = importlib.import_module('.kinematics.' + kin_name, package='klippy')
+             self.kin = mod.load_kinematics(self, config)
+         except config.error as e:
+             raise
