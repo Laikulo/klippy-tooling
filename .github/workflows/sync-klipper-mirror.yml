@@ -77,6 +77,7 @@ jobs:
       - sync_repo
     if: ${{ needs.sync_repo.outputs.DID_REBASE }}
     uses: ./.github/workflows/generate-repo.yml
+    secrets: inherit
     
         
 
