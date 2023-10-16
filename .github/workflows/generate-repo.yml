@@ -1,0 +1,45 @@
+name: Generate repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_repo:
+    runs-on: ubuntu-latest
+    name: Generate py project repo
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout tooling repo
+      - name: Generate token for target repo
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_PRIVKEY }}
+          owner: Laikulo
+          repositories: "klippy"
+      - name: Get latest klipper version
+        id: get_latest_klipper
+        run: |
+          KLIPPER_SHA="$(git ls-remote https://github.com/Laikulo/klipper.git laikulo-devel | cut -f1)"
+      - name: Generate Python Package
+        uses: ./.github/actions/klippy-build
+      - name: Prepare distribution folder
+        run:
+          ./bin/make-folder.sh
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: 'Laikulo/klippy'
+          ref: 'main'
+          token: ${{ steps.generate_token.outputs.token }}
+          path: dist_repo
+      - name: Sync into repo
+        run: |
+          bin/sync-folder-to-repo.sh dist_repo
+      - name: Push back to target repo
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          cd "$GITHUB_WORKSPACE/klipper"
+          git push -f
