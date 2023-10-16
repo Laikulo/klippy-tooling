@@ -74,7 +74,7 @@ jobs:
 
   trigger_repogen:
     if: ${{ jobs.sync_repo.outputs.DID_REBASE }}
-    uses: ./.github/workflows/generate-repo.yml@laikulo-klipper
+    uses: ./.github/workflows/generate-repo.yml
     
         
 
