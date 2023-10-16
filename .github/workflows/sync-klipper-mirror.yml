@@ -78,6 +78,7 @@ jobs:
     secrets: inherit
 
   trigger_factory:
+    runs-on: ubuntu-latest
     needs:
       - sync_repo
       - trigger_repogen
