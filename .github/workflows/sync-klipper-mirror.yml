@@ -9,7 +9,7 @@ jobs:
   sync_repo:
     runs-on: ubuntu-latest
     outputs:
-      DID_REBASE: ${{ ! steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
+      DID_REBASE: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
     steps:
       - name: Generate token
         id: generate_token
