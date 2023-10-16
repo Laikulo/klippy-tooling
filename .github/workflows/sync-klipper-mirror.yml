@@ -73,7 +73,7 @@ jobs:
   trigger_repogen:
     needs:
       - sync_repo
-    if: ${{ needs.sync_repo.outputs.DID_REBASE == true }}
+    if: ${{ needs.sync_repo.outputs.DID_REBASE }}
     uses: ./.github/workflows/generate-repo.yml
     secrets: inherit
 
@@ -82,7 +82,7 @@ jobs:
     needs:
       - sync_repo
       - trigger_repogen
-    if: ${{ needs.sync_repo.outputs.DID_REBASE == true }}
+    if: ${{ needs.sync_repo.outputs.DID_REBASE }}
     steps:
       - name: Generate token
         id: generate_token
