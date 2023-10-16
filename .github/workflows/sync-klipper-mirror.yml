@@ -101,7 +101,7 @@ jobs:
           KLIPPER_FORK_HEAD: ${{ steps.get_klipper_fork.outputs.KLIPPER_FORK_HEAD }}
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          gh workflow run --repo Laikulo/Klipper-firmware docker-publish-factory.yaml -f klipperVer="$KLIPPER_FORK_HEAD" -f klipperRepo="https://github.com/Laikulo/klipper.git" -f tagName="${KLIPPER_FORK_HEAD::7}"
+          gh workflow run --repo Laikulo/Klipper-firmware docker-publish-factory.yml -f klipperVer="$KLIPPER_FORK_HEAD" -f klipperRepo="https://github.com/Laikulo/klipper.git" -f tagName="${KLIPPER_FORK_HEAD::7}"
           RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w docker-publish-factory.yml --json number --template "{{range .}}{{.number}}{{end}}")"
           gh run watch "$RUN_NUMBER"
           
