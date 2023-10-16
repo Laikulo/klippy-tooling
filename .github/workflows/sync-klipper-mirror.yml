@@ -73,7 +73,9 @@ jobs:
           git push -f
 
   trigger_repogen:
-    if: ${{ jobs.sync_repo.outputs.DID_REBASE }}
+    needs:
+      - sync_repo
+    if: ${{ needs.sync_repo.outputs.DID_REBASE }}
     uses: ./.github/workflows/generate-repo.yml
     
         
