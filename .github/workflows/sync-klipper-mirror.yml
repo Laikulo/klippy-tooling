@@ -75,7 +75,7 @@ jobs:
   trigger_repogen:
     needs:
       - sync_repo
-    if: ${{ needs.sync_repo.outputs.DID_REBASE }}
+    if: ${{ needs.sync_repo.outputs.DID_REBASE == true }}
     uses: ./.github/workflows/generate-repo.yml
     secrets: inherit
     
