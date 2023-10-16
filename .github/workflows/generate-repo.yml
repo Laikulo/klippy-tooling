@@ -45,5 +45,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          cd "$GITHUB_WORKSPACE/klipper"
+          cd "dist_repo"
           git push -f
