@@ -66,8 +66,6 @@ jobs:
 
       - name: Push rebased branch back
         if: ${{ steps.check_if_head_present.outputs.REF_IS_IN_BRANCH == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
           cd "$GITHUB_WORKSPACE/klipper"
           git push -f
@@ -78,6 +76,32 @@ jobs:
     if: ${{ needs.sync_repo.outputs.DID_REBASE == true }}
     uses: ./.github/workflows/generate-repo.yml
     secrets: inherit
-    
-        
+
+  trigger_factory:
+    needs:
+      - sync_repo
+      - trigger_repogen
+    if: ${{ needs.sync_repo.outputs.DID_REBASE == true }}
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_PRIVKEY }}
+          owner: Laikulo
+          repositories: "Klipper-firmware"
+      - name: Get latest head of klipper fork
+        id: get_klipper_fork
+        run: |
+          tee -a <<<"KLIPPER_FORK_HEAD=$(git ls-remote https://github.com/Laikulo/klipper.git laikulo-devel | cut -f1)" "$GITHUB_OUTPUT"
+      - name: Trigger factory
+        env:
+          KLIPPER_FORK_HEAD: ${{ steps.get_klipper_fork.outputs.KLIPPER_FORK_HEAD }}
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          gh workflow run --repo Laikulo/Klipper-firmware docker-publish-factory.yaml -f klipperVer="$KLIPPER_FORK_HEAD" -f klipperRepo="https://github.com/Laikulo/klipper.git" -f tagName="${KLIPPER_FORK_HEAD::7}"
+          RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w docker-publish-factory.yml --json number --template "{{range .}}{{.number}}{{end}}")"
+          gh run watch "$RUN_NUMBER"
+          
 
