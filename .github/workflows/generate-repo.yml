@@ -36,6 +36,10 @@ jobs:
           path: dist_repo
       - name: Sync into repo
         run: |
+          pushd dist_repo
+          git config user.name "Klippy-Tools-Bot"
+          git config user.email "klippy-bot@haun.guru"
+          popd
           bin/sync-folder-to-repo.sh dist_repo
       - name: Push back to target repo
         env:
