@@ -1,33 +1,12 @@
-diff -urpN klippy/klippy.py klippy-patched/klippy.py
---- klippy-stock/klippy.py      2023-10-15 15:06:22.188395984 -0400
-+++ klippy/klippy.py    2023-10-15 15:05:47.375117903 -0400
-@@ -114,7 +114,7 @@ class Printer:
-             # A module is considered external to klipper if its name includes at least one dot
-             module_fullname = module_name
-         else:
--            module_fullname = 'extras.' + module_name
-+            module_fullname = 'klippy.extras.' + module_name
-             py_name = os.path.join(os.path.dirname(__file__),
-                                    'extras', module_name + '.py')
-             py_dirname = os.path.join(os.path.dirname(__file__),
-@@ -291,7 +291,7 @@ def import_test():
-                 if not os.path.exists(iname):
-                     continue
-                 module_name = fname
--            importlib.import_module(mname + '.' + module_name)
-+            importlib.import_module("." + mname + '.' + module_name, package="klippy")
-     sys.exit(0)
+diff -urpN klippy-stock/extras/shaper_calibrate.py klippy/extras/shaper_calibrate.py
+--- klippy-stock/extras/shaper_calibrate.py	2023-10-17 20:01:35.123889133 -0400
++++ klippy/extras/shaper_calibrate.py	2023-10-17 20:02:43.803622708 -0400
+@@ -4,7 +4,7 @@
+ #
+ # This file may be distributed under the terms of the GNU GPLv3 license.
+ import collections, importlib, logging, math, multiprocessing, traceback
+-shaper_defs = importlib.import_module('.shaper_defs', 'extras')
++shaper_defs = importlib.import_module('.shaper_defs', 'klippy.extras')
  
- def arg_dictionary(option, opt_str, value, parser):
-diff -urpN klippy/toolhead.py klippy-patched/toolhead.py
---- klippy/toolhead.py	2023-10-15 14:13:05.174130780 -0400
-+++ klippy-patched/toolhead.py	2023-10-15 14:12:45.804161410 -0400
-@@ -254,7 +254,7 @@ class ToolHead:
-         self.extruder = extruder.DummyExtruder(self.printer)
-         kin_name = config.get('kinematics')
-         try:
--            mod = importlib.import_module('kinematics.' + kin_name)
-+            mod = importlib.import_module('.kinematics.' + kin_name, package='klippy')
-             self.kin = mod.load_kinematics(self, config)
-         except config.error as e:
-             raise
+ MIN_FREQ = 5.
+ MAX_FREQ = 200.
