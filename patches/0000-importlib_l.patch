@@ -10,3 +10,36 @@ diff -urpN klippy-stock/extras/shaper_calibrate.py klippy/extras/shaper_calibrat
  
  MIN_FREQ = 5.
  MAX_FREQ = 200.
+diff -urpN klippy-stock/klippy.py klippy/klippy.py
+--- klippy-stock/klippy.py	2023-10-17 20:01:35.131889102 -0400
++++ klippy/klippy.py	2023-10-17 20:12:46.269285566 -0400
+@@ -114,7 +114,7 @@ class Printer:
+             # A module is considered external to klipper if its name includes at least one dot
+             module_fullname = module_name
+         else:
+-            module_fullname = 'extras.' + module_name
++            module_fullname = 'klippy.extras.' + module_name
+             py_name = os.path.join(os.path.dirname(__file__),
+                                    'extras', module_name + '.py')
+             py_dirname = os.path.join(os.path.dirname(__file__),
+@@ -291,7 +291,7 @@ def import_test():
+                 if not os.path.exists(iname):
+                     continue
+                 module_name = fname
+-            importlib.import_module(mname + '.' + module_name)
++            importlib.import_module("." + mname + '.' + module_name, package="klippy")
+     sys.exit(0)
+ 
+ def arg_dictionary(option, opt_str, value, parser):
+diff -urpN klippy-stock/toolhead.py klippy/toolhead.py
+--- klippy-stock/toolhead.py	2023-10-17 20:01:35.131889102 -0400
++++ klippy/toolhead.py	2023-10-17 20:12:46.269285566 -0400
+@@ -254,7 +254,7 @@ class ToolHead:
+         self.extruder = extruder.DummyExtruder(self.printer)
+         kin_name = config.get('kinematics')
+         try:
+-            mod = importlib.import_module('kinematics.' + kin_name)
++            mod = importlib.import_module('.kinematics.' + kin_name, package='klippy')
+             self.kin = mod.load_kinematics(self, config)
+         except config.error as e:
+             raise
