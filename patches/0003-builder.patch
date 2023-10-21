@@ -1,6 +1,6 @@
 diff -urpN klippy-stock/chelper/builder.py klippy/chelper/builder.py
 --- klippy-stock/chelper/builder.py	1969-12-31 19:00:00.000000000 -0500
-+++ klippy/chelper/builder.py	2023-10-21 16:17:03.646751719 -0400
++++ klippy/chelper/builder.py	2023-10-21 16:38:22.664622806 -0400
 @@ -0,0 +1,56 @@
 +# This file should not be included in the compiled wheel, but should be included in the tarball.
 +
@@ -22,7 +22,7 @@ diff -urpN klippy-stock/chelper/builder.py klippy/chelper/builder.py
 +else:
 +    HC_CFLAGS="-Wall -g -O2 -o %s %s -lusb"
 +
-+HC_COMPIILE_CMD=f"{GCC_CMD} {HC_CFLAGS}"
++HC_COMPILE_CMD=f"{GCC_CMD} {HC_CFLAGS}"
 +
 +# Duplicated here to bring the correct GCC_CMD over
 +# Check if the current gcc version supports a particular command-line option
