@@ -1,7 +1,7 @@
 diff -urpN klippy-stock/chelper/builder.py klippy/chelper/builder.py
 --- klippy-stock/chelper/builder.py	1969-12-31 19:00:00.000000000 -0500
-+++ klippy/chelper/builder.py	2023-10-21 15:38:11.875692858 -0400
-@@ -0,0 +1,52 @@
++++ klippy/chelper/builder.py	2023-10-21 16:17:03.646751719 -0400
+@@ -0,0 +1,56 @@
 +# This file should not be included in the compiled wheel, but should be included in the tarball.
 +
 +import os, logging
@@ -18,7 +18,11 @@ diff -urpN klippy-stock/chelper/builder.py klippy/chelper/builder.py
 +    # Example from buildroot: -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -Os -g0 
 +    COMPILE_ARGS = ( "-Wall -shared -fPIC -flto -fwhole-program -fno-use-linker-plugin "
 +                     f"{os.environ['CFLAGS']} -o %s %s " )
++    HC_CFLAGS = f"-Wall {os.environ['CFLAGS']} -o %s %s -lusb"
++else:
++    HC_CFLAGS="-Wall -g -O2 -o %s %s -lusb"
 +
++HC_COMPIILE_CMD=f"{GCC_CMD} {HC_CFLAGS}"
 +
 +# Duplicated here to bring the correct GCC_CMD over
 +# Check if the current gcc version supports a particular command-line option
