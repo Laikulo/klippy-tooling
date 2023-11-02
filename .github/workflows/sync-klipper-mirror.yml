@@ -18,24 +18,24 @@ jobs:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_PRIVKEY }}
           owner: Laikulo
-          repositories: "Klipper"
+          repositories: "klipper"
           
       - name: Sync klipper fork master branch
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
-        run: gh repo sync Laikulo/Klipper -b master
+        run: gh repo sync Laikulo/klipper -b master
         
       - name: Get current upstream head
         id: get_upstream_head
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         run: |
-          echo "upstream_head=$(git ls-remote https://github.com/Klipper3d/Klipper.git master | cut -f 1)" >> "$GITHUB_OUTPUT"
+          echo "upstream_head=$(git ls-remote https://github.com/Klipper3d/klipper.git master | cut -f 1)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout modified workbranch
         uses: actions/checkout@v4
         with:
-          repository: 'Laikulo/Klipper'
+          repository: 'Laikulo/klipper'
           ref: 'laikulo-devel'
           token: ${{ steps.generate_token.outputs.token }}
           path: klipper
@@ -61,7 +61,7 @@ jobs:
           cd "$GITHUB_WORKSPACE/klipper"
           git config user.name "Klippy-Tools-Bot"
           git config user.email "aaron@haun.guru"
-          git fetch https://github.com/Klipper3d/Klipper.git master
+          git fetch https://github.com/Klipper3d/klipper.git master
           git rebase FETCH_HEAD
 
       - name: Push rebased branch back
