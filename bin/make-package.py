@@ -36,13 +36,16 @@ class ImportRewriter(ast.NodeTransformer):
         return self._process_import(node)
 
     def _process_import(self, node):
-        if self.is_klippy(node):
+        if self.is_klippy(node, self.__depth):
             new_nodes = []
             package_names = {}
             for node_name in node.names:
                 segments = node_name.name.split('.')
                 if len(segments) == 1:
-                    relative_pkg = ''
+                    if type(node) == ast.ImportFrom and node.module:
+                        relative_pkg = node.module
+                    else:
+                        relative_pkg = ''
                     relative_name = node_name.name
                 else:
                     relative_pkg = ".".join(segments[:-1])
@@ -66,8 +69,12 @@ class ImportRewriter(ast.NodeTransformer):
         else:
             return node
 
-    def is_klippy(self, node):
+    def is_klippy(self, node, depth):
         klippy: Optional[bool] = None
+        # For ImportFrom's, we also have to check if the "module" is one of ours
+        if type(node) == ast.ImportFrom:
+            if node.level == 0 and node.module is not None and node.module.split(".")[0] in self.__top_level_names:
+                return True
         for name in node.names:
             name_is_klippy = name.name.split('.')[0] in self.__top_level_names
             if klippy is not None:
