@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 klippy_dir=${1:-klippy}
 ./bin/make-package.py "$klippy_dir"
 pushd "$klippy_dir"

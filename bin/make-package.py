@@ -57,7 +57,7 @@ class ImportRewriter(ast.NodeTransformer):
                         level = self.__depth
                         ))
             self.__mod_change_list.add((node, tuple(new_nodes)))
-            logging.info(f"Rewrote an import at {node.lineno}: {ast.unparse(node)->{ast.unparse(new_nodes)}")
+            logging.info(f"Rewrote an import at {node.lineno}: {ast.unparse(node)}->{ast.unparse(new_nodes)}")
             return new_nodes
         else:
             return node
