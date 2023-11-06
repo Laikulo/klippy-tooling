@@ -61,7 +61,7 @@ class ImportRewriter(ast.NodeTransformer):
                         level = self.__depth
                         ))
             self.__mod_change_list.add((node, tuple(new_nodes)))
-            logging.info(f"Rewrote an import at {node.lineno}: {ast.unparse(node)}->{ast.unparse(new_nodes)}")
+            logging.info(f"Rewrote an import at {node.lineno}: {ast.unparse(node)} -> {ast.unparse(new_nodes)}")
             return new_nodes
         else:
             return node
@@ -89,7 +89,7 @@ class ImportedThingFixer(ast.NodeTransformer):
         if elements in self.__to_map:
             new_node = ast.Name(id=self.__to_map[elements])
             self.__replacements.add((node,(new_node,)))
-            logging.info(f"Rewrote {ast.unparse(node)}->{ast.unparse(new_node)}")
+            logging.info(f"Rewrote name {ast.unparse(node)} -> {ast.unparse(new_node)}")
             return new_node
         # Non matching node. Dive down in case something deeper matches
         if type(node.value) == ast.Attribute:
@@ -113,7 +113,7 @@ class ImportedThingFixer(ast.NodeTransformer):
             return ()
         
 def walk_py_dir(dirname, namepath=None, top_level_names=None):
-    logging.debug("Walking {dirname}")
+    logging.debug(f"Walking {dirname}")
     if namepath is not None:
         depth = len(namepath)
     else:
@@ -130,7 +130,7 @@ def walk_py_dir(dirname, namepath=None, top_level_names=None):
         top_level_names = py_here + packages_here
     
     for f in py_here:
-        logging.debug(f"Processing: {dirname}/{f}")
+        logging.debug(f"Processing: {dirname}/{f}.py")
         do_py(f'{dirname}/{f}.py', namepath + [f], top_level_names)
     for p in packages_here:
         walk_py_dir(f'{dirname}/{p}', namepath + [p], top_level_names)
