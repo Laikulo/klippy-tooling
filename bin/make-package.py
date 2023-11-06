@@ -87,7 +87,7 @@ class ImportedThingFixer(ast.NodeTransformer):
         if elements in self.__to_map:
             new_node = ast.Name(id=self.__to_map[elements])
             self.__replacements.add((node,(new_node,)))
-            logging.info(f"Rewrote {ast.unparse(node)->(ast.unparse(neww_node)}")
+            logging.info(f"Rewrote {ast.unparse(node)}->{ast.unparse(new_node)}")
             return new_node
         # Non matching node. Dive down in case something deeper matches
         if type(node.value) == ast.Attribute:
