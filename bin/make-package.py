@@ -6,6 +6,7 @@ from pprint import pp
 import pathlib
 import difflib
 import shutil
+import logging
 
 from glob import glob
 
@@ -56,6 +57,7 @@ class ImportRewriter(ast.NodeTransformer):
                         level = self.__depth
                         ))
             self.__mod_change_list.add((node, tuple(new_nodes)))
+            logging.info(f"Rewrote an import at {node.lineno}: {ast.unparse(node)->{ast.unparse(new_nodes)}")
             return new_nodes
         else:
             return node
@@ -106,6 +108,7 @@ class ImportedThingFixer(ast.NodeTransformer):
             return ()
         
 def walk_py_dir(dirname, namepath=None, top_level_names=None):
+    logging.debug("Walking {dirname}")
     if namepath is not None:
         depth = len(namepath)
     else:
@@ -122,6 +125,7 @@ def walk_py_dir(dirname, namepath=None, top_level_names=None):
         top_level_names = py_here + packages_here
     
     for f in py_here:
+        logging.debug(f"Processing: {dirname}/{f}")
         do_py(f'{dirname}/{f}.py', namepath + [f], top_level_names)
     for p in packages_here:
         walk_py_dir(f'{dirname}/{p}', namepath + [p], top_level_names)
@@ -188,7 +192,7 @@ def apply_node_changes(input_text, nodes_to_change):
     output_lines += input_lines[current_src_lineno-1:]
     return "\n".join(output_lines)
         
-
+logging.basicConfig(level=logging.DEBUG)
 target_klippy=sys.argv[1] if len(sys.argv) > 0 else "klippy"
 walk_py_dir(sys.argv[1])
 
