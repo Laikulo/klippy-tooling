@@ -4,5 +4,5 @@ inputs: {}
 oututs: {}
 runs:
   using: 'docker'
-  image: 'Dockerfile.github'
+  image: 'docker://ghcr.io/laikulo/klippy-tooling/repackager:latest'
   args: []
