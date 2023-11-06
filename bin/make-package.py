@@ -14,6 +14,8 @@ from typing import List
 
 import sys
 
+logging.basicConfig(level=logging.DEBUG)
+
 top_level_py = [ pathlib.Path(f).stem for f in glob('klippy/*.py') ]
 top_level_modules = top_level_py + [ pathlib.Path(f).parent.stem for f in glob('klippy/*/__init__.py') ]
 
@@ -195,7 +197,6 @@ def apply_node_changes(input_text, nodes_to_change):
     output_lines += input_lines[current_src_lineno-1:]
     return "\n".join(output_lines)
         
-logging.basicConfig(level=logging.DEBUG)
 target_klippy=sys.argv[1] if len(sys.argv) > 0 else "klippy"
 walk_py_dir(sys.argv[1])
 
