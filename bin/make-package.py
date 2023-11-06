@@ -17,6 +17,8 @@ import sys
 top_level_py = [ pathlib.Path(f).stem for f in glob('klippy/*.py') ]
 top_level_modules = top_level_py + [ pathlib.Path(f).parent.stem for f in glob('klippy/*/__init__.py') ]
 
+logging.debug(f"Top level: {top_level_modules}")
+
 class ImportRewriter(ast.NodeTransformer):
 
     def __init__(self, modlist, tln, depth):
@@ -85,6 +87,7 @@ class ImportedThingFixer(ast.NodeTransformer):
         if elements in self.__to_map:
             new_node = ast.Name(id=self.__to_map[elements])
             self.__replacements.add((node,(new_node,)))
+            logging.info(f"Rewrote {ast.unparse(node)->(ast.unparse(neww_node)")
             return new_node
         # Non matching node. Dive down in case something deeper matches
         if type(node.value) == ast.Attribute:
