@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule: 
-    - cron: '3 0 * * *'
+    - cron: '3 0 * * 0'
 
 env:
   REGISTRY: ghcr.io
@@ -38,8 +38,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: ${{ github.event_name != 'pull_request' }}
-          context: ./.github/actions/klippy-build.yml
-          file: ./.github/actions/Dockerfile.github
+          context: ./.github/actions/klippy-build/
+          file: ./.github/actions/klippy-build/Dockerfile.github
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
