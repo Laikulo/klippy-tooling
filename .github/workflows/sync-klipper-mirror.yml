@@ -105,5 +105,13 @@ jobs:
           sleep 4
           RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w docker-publish-factory.yml --json databaseId --template '{{ printf "%.0f" ((index . 0).databaseId) }}')"
           gh run --repo Laikulo/Klipper-firmware watch "$RUN_NUMBER"
-          
+      - name: Trigger firmware builds
+        env:
+          KLIPPER_FORK_HEAD: ${{ steps.get_klipper_fork.outputs.KLIPPER_FORK_HEAD }}
+          GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+        run: |
+          gh workflow run --repo Laikulo/Klipper-firmware factory-all.yml -f factoryTag="${KLIPPER_FORK_HEAD::7}"
+          sleep 4
+          RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w factory-all.yml --json databaseId --template '{{ printf "%.0f" ((index . 0).databaseId) }}')"
+          gh run --repo Laikulo/Klipper-firmware watch "$RUN_NUMBER"
 
