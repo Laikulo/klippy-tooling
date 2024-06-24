@@ -5,7 +5,6 @@ This is a python-packaged version of the python component of [Klipper](Klipper3d
 ## Differences from vanilla klipper
 * Supports "extras" modules from other packges in the PYTHONPATH. Give a full name of the module as the type in a config file to use this.
 * Supports setting group and mode on the linux mcu's pty
-* Contains a tweak for the arm linker script to support building on a broader spec of newlib versions
 
 ## Commands
 Klippy can be invoked as `klipper-klippy` or `klipper_klippy`.
