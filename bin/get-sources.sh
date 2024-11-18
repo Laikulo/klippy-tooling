@@ -9,5 +9,5 @@ fi
 mkdir upstream
 cd upstream
 git init
-git fetch --depth 1 "${klippy_upstream}" "${klippy_version}"
+git fetch "${klippy_upstream}" --tags "${klippy_version}"
 git checkout FETCH_HEAD
