@@ -6,7 +6,7 @@ repo_path="${1%/}"
 
 folder_path="${2:-pub/}"
 
-rsync -vv --delete --exclude .git --exclude .github --exclude .gitignore -r "${folder_path%/}/" "$repo_path/"
+rsync -vv --delete --exclude .git --exclude .github --exclude .gitignore --exclude .ci -r "${folder_path%/}/" "$repo_path/"
 pushd "$repo_path"
 
 upstream_rev_shortsha="$(cat klippy/.version)"
