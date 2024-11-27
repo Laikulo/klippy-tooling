@@ -100,8 +100,9 @@ jobs:
         env:
           KLIPPER_FORK_HEAD: ${{ steps.get_klipper_fork.outputs.KLIPPER_FORK_HEAD }}
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          KLIPPY_VERSION: ${{ needs.trigger_repogen.outputs.klippy_version }}
         run: |
-          gh workflow run --repo Laikulo/Klipper-firmware docker-publish-factory.yml -f klipperVer="$KLIPPER_FORK_HEAD" -f klipperRepo="https://github.com/Laikulo/klipper.git" -f tagName="$(cat klippy/.version)"
+          gh workflow run --repo Laikulo/Klipper-firmware docker-publish-factory.yml -f klipperVer="$KLIPPER_FORK_HEAD" -f klipperRepo="https://github.com/Laikulo/klipper.git" -f tagName="${KLIPPY_VERSION}"
           sleep 4
           RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w docker-publish-factory.yml --json databaseId --template '{{ printf "%.0f" ((index . 0).databaseId) }}')"
           gh run --repo Laikulo/Klipper-firmware watch "$RUN_NUMBER"
@@ -109,8 +110,9 @@ jobs:
         env:
           KLIPPER_FORK_HEAD: ${{ steps.get_klipper_fork.outputs.KLIPPER_FORK_HEAD }}
           GH_TOKEN: ${{ steps.generate_token.outputs.token }}
+          KLIPPY_VERSION: ${{ needs.trigger_repogen.outputs.klippy_version }}
         run: |
-          gh workflow run --repo Laikulo/Klipper-firmware factory-all.yml -f factoryTag="$(cat klippy/.version)"
+          gh workflow run --repo Laikulo/Klipper-firmware factory-all.yml -f factoryTag="${KLIPPY_VERSION}"
           sleep 4
           RUN_NUMBER="$(gh run --repo Laikulo/klipper-firmware list -e workflow_dispatch --limit 1 -w factory-all.yml --json databaseId --template '{{ printf "%.0f" ((index . 0).databaseId) }}')"
           gh run --repo Laikulo/Klipper-firmware watch "$RUN_NUMBER"

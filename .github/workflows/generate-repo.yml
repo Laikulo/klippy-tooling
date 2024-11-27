@@ -3,10 +3,14 @@ name: Generate repo
 on:
   workflow_dispatch:
   workflow_call:
+    outputs:
+      klippy_version: ${{ jobs.generate_repo.outputs.klippy_version }}
 
 jobs:
   generate_repo:
     runs-on: ubuntu-latest
+    outputs: 
+      klippy_version: ${{ steps.get_klippy_version.outputs.klippy_version }}
     name: Generate py project repo
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +32,10 @@ jobs:
       - name: Prepare distribution folder
         run:
           ./bin/make-folder.sh
+      - name: Extract formatted version number
+        id: get_klippy_version
+        run:
+          echo "klippy_version=$(cat klippy/.version)" >> "$GITHUB_OUTPUT"
       - name: Checkout target repo
         uses: actions/checkout@v4
         with:
