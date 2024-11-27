@@ -4,23 +4,24 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "klipper-klippy-l"
-version = "0.12.0.dev287"
 license.text = "GPL-3.0-only"
 readme = "README-py.md"
-description = "Klipper's host daemon - Unofficial repackage, includes patches" 
+description = "Klipper's host daemon - Unofficial repackage, includes patches"
 dependencies= [
-	"cffi==1.15.1",
-	"pyserial==3.4",
-	"greenlet==2.0.2",
-	"Jinja2==2.11.3",
-	"python-can==3.3.4",
-	"markupsafe==1.1.1"
+        "cffi==1.15.1",
+        "pyserial==3.4",
+        "greenlet==2.0.2",
+        "Jinja2==2.11.3",
+        "python-can==3.3.4",
+        "markupsafe==1.1.1"
 ]
+
+dynamic = [ "version" ]
 
 [project.optional-dependencies]
 resonanceTest = [
-	"numpy",
-	"matplotlib"
+        "numpy",
+        "matplotlib"
 ]
 
 [project.urls]
@@ -30,10 +31,14 @@ homepage = "https://github.com/laikulo/klippy"
 klipper-klippy = "klippy.klippy:main"
 klipper_klippy = "klippy.klippy:main"
 
+[tool.setuptools.dynamic]
+version = { file = ".py_version" }
+
 [tool.setuptools.packages.find]
 include = [
  "klippy",
  "klippy.*",
+ "build_data"
 ]
 
 [tool.setuptools.package-data]
@@ -43,8 +48,5 @@ klippy = [ "config/*", "docs/*" ]
 
 [tool.setuptools.exclude-package-data]
 "klippy.chelper" = [
-	"*.[ch]"
+        "*.[ch]"
 ]
-
-
-
