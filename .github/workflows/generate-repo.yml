@@ -4,7 +4,9 @@ on:
   workflow_dispatch:
   workflow_call:
     outputs:
-      klippy_version: ${{ jobs.generate_repo.outputs.klippy_version }}
+      klippy_version:
+      description: "The version of klippy genrated"
+      value: ${{ jobs.generate_repo.outputs.klippy_version }}
 
 jobs:
   generate_repo:
